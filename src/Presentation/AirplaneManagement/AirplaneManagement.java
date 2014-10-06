@@ -11,6 +11,8 @@ import Model.AplicationObject.IAirplane;
 import Model.DataAccess.BDataManagement;
 import Model.DataAccess.IDataManagement;
 import Model.DataAccess.IResponse;
+import Model.Filters.BFilters;
+import Model.Filters.IFilters;
 import Model.Request.RequestAddAirplane;
 import Model.Request.RequestAllAirplanes;
 import Model.Response.ResponseSetAirport;
@@ -57,24 +59,8 @@ class AirplaneManagement implements IAirplaneManagement{
 
     @Override
     public IAirplane find(UUID id) {
-        IRole role = getRole();
-        RequestAllAirplanes rq = new RequestAllAirplanes(role);
-        IResponse rr = dm.exec(rq);
-        if(rr.state() == EResponseState.OK)
-        {
-            ResponseSetAirport res = (ResponseSetAirport)rr;
-            Iterator<IAirplane> itr = res.iterator();
-            while(itr.hasNext())
-            {
-                IAirplane airplane = itr.next();
-                if(airplane.getID().equals(id))
-                {
-                    return airplane;
-                }
-            }
-            
-        }
-        return null;
+        IFilters filter = BFilters.build();
+        return filter.findAirplaneByID(all(), id);
     }
 
     @Override

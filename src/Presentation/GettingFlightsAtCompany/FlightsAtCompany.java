@@ -9,9 +9,10 @@ package Presentation.GettingFlightsAtCompany;
 import Model.AplicationObject.IFlight;
 import Model.DataAccess.BDataManagement;
 import Model.DataAccess.IDataManagement;
+import Model.Filters.BFilters;
+import Model.Filters.IFilters;
 import Model.Request.RequestAllFlights;
 import Model.Response.ResponseSetFlights;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import Model.Logon.IRole;
@@ -41,29 +42,14 @@ class FlightsAtCompany implements IFlightsAtCompany{
     @Override
     public Iterator<IFlight> since(Date from)
     {
-        ArrayList<IFlight> al = new ArrayList<>();
-        Iterator<IFlight> itr;
-        IFlight fl;
-        itr = all();
-        while(itr.hasNext())
-        {
-            fl = itr.next();
-            if(fl.departureTime().after(from)){
-                al.add(fl);
-            }
-        }
-        return al.iterator();
+        IFilters filter = BFilters.build();
+        return filter.flightsSinceDate(all(), from);        
     }
 
     @Override
-    public boolean validate(IFlight flights) {
-        Iterator<IFlight> itr;
-        itr = all();
-        while(itr.hasNext())
-        {
-            if(itr.next().flightsID().equals(flights.flightsID())) return true;
-        }
-        return false;
+    public boolean validate(IFlight flight) {
+        IFilters filter = BFilters.build();
+        return filter.validateFlights(all(), flight);        
     }
     
 }
