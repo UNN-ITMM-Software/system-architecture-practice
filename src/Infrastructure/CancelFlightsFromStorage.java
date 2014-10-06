@@ -32,29 +32,29 @@ public class CancelFlightsFromStorage implements ICancelFlights{
         {
             JOptionPane.showMessageDialog( null,
                     "Редактировать информацию о полетах "
-                    + "могут только менежеры", 
-                    "Нет прав доступа", 
+                    + "могут только менежеры",
+                    "Нет прав доступа",
                     JOptionPane.ERROR_MESSAGE);
             return new ResponseSimple(EResponseState.FALSE, false);
         }
-        
+
         IFlight flights = r.get();
-        
+
         Connection c = DatabaseConnection.getConnection();
-        
+
         Statement stmt = null;
         try {
             stmt = c.createStatement();
-        
+
             String sql = "DELETE FROM FLIGHTS WHERE ID_FLIGHTS ="
-                    + "'"+flights.flightsID().toString()+"'"; 
+                    + "'"+flights.flightsID().toString()+"'";
             stmt.executeUpdate(sql);
             stmt.close();
             return new ResponseSimple(EResponseState.OK, false);
         } catch (SQLException ex) {
             Logger.getLogger(AddFlightsToStorage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return new ResponseSimple(EResponseState.FALSE, false);
     }
 }

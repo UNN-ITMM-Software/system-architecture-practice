@@ -13,16 +13,16 @@ import java.util.UUID;
  * @author Evgeniy
  */
 class RoleUser implements IRole{
-    
+
     String login;
     String pass;
     String name;
-    
+
     public RoleUser(String name, String login, String pass){
         this.login = login;
         this.pass  = pass;
     }
-    
+
 
     @Override
     public UUID getStatusID() {
@@ -38,5 +38,5 @@ class RoleUser implements IRole{
     public String getName() {
         return name;
     }
-    
+
 }

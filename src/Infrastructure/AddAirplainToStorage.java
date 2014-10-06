@@ -22,35 +22,35 @@ import logon.RoleVerification;
  * @author Evgeniy
  */
 public class AddAirplainToStorage implements IAddAirplane{
-    
+
     @Override
     public IResponse add(RequestAddAirplane r)
     {
-        Map<UUID, IAirplane> airplanes = 
+        Map<UUID, IAirplane> airplanes =
                 BInfrastructure.buildGetAirplaneStorage().getAirplaneStorage();
         if(!RoleVerification.isManager(r.getRole()))
         {
             JOptionPane.showMessageDialog( null,
                     "Редактировать информацию о самолетах "
-                    + "могут только менежеры", 
-                    "Нет прав доступа", 
+                    + "могут только менежеры",
+                    "Нет прав доступа",
                     JOptionPane.ERROR_MESSAGE);
             return new ResponseSimple(EResponseState.FALSE, false);
         }
-        
+
         IAirplane airplane = r.get();
-        
+
         if(airplanes.containsKey(airplane.getID()))
         {
             JOptionPane.showMessageDialog( null,
-                    "Самолет в базе данных уже существует", 
-                    "Ошибка редактирования", 
+                    "Самолет в базе данных уже существует",
+                    "Ошибка редактирования",
                     JOptionPane.WARNING_MESSAGE);
             return new ResponseSimple(EResponseState.FALSE, false);
         }
-        
+
         airplanes.put(airplane.getID(), airplane);
-        
+
         return new ResponseSimple(EResponseState.OK, false);
     }
 }

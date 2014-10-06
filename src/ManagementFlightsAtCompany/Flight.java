@@ -24,7 +24,7 @@ class Flight implements IFlight{
     IAirplane airplane;
     Date departureTime;
     Date arrivalTime;
-    
+
     public Flight(UUID id, IAirport startAirport, IAirport finishAirport,
                    IAirplane airplane, Date departureTime, Date arrivalTime)
     {
@@ -35,7 +35,7 @@ class Flight implements IFlight{
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
     }
-    
+
     @Override
     public UUID flightsID() {
         return id;
@@ -65,5 +65,5 @@ class Flight implements IFlight{
     public Date arrivalTime() {
         return arrivalTime;
     }
-    
+
 }

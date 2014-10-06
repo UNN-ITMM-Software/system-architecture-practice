@@ -16,7 +16,7 @@ import java.util.Date;
  * @author Evgeniy
  */
 public interface IManagementFlights {
-    IFlight addFlight(IAirport start, IAirport finish, 
+    IFlight addFlight(IAirport start, IAirport finish,
                        IAirplane airplane,
                        Date departureTime, Date arrivalTime);
     boolean cancelFlight(IFlight flights);

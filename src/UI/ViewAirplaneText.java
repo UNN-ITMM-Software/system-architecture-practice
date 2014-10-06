@@ -21,16 +21,16 @@ import logon.IRole;
  */
 public class ViewAirplaneText implements IView, IObserver{
 
-    IRole r = BAuthentication.getRole(); 
+    IRole r = BAuthentication.getRole();
     IAirplaneManagement am;
-    
+
     public ViewAirplaneText()
     {
         am = BAirplaneManagement.build(r);
     }
-    
+
     @Override
-    public void refresh(IDataManagement dm) 
+    public void refresh(IDataManagement dm)
     {
         Iterator<IAirplane> itr = am.all();
         int i = 1;
@@ -47,5 +47,5 @@ public class ViewAirplaneText implements IView, IObserver{
     public void init(IRole r) {
         this.r = r;
     }
-    
+
 }

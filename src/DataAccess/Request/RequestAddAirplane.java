@@ -17,16 +17,16 @@ import logon.IRole;
 public class RequestAddAirplane extends RequestSimple implements IRequest{
 
     IAirplane airplane;
-    
+
     public RequestAddAirplane(IRole r, IAirplane airplane)
     {
         super(r);
         this.airplane = airplane;
     }
-    
+
     public IAirplane get()
     {
         return airplane;
     }
-    
+
 }

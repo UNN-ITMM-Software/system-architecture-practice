@@ -28,7 +28,7 @@ class ManagementFlights implements IManagementFlights{
 
     IRole r = BAuthentication.getRole();
     IDataManagement dm;
-    
+
     public ManagementFlights(IRole r)
     {
         if(r != null)
@@ -37,19 +37,19 @@ class ManagementFlights implements IManagementFlights{
         }
         dm = BDataManagement.build();
     }
-    
+
     @Override
-    public IFlight addFlight(IAirport start, IAirport finish, 
+    public IFlight addFlight(IAirport start, IAirport finish,
                        IAirplane airplane,
-                       Date departureTime, Date arrivalTime) 
+                       Date departureTime, Date arrivalTime)
     {
         UUID id = UUID.randomUUID();
         IFlight fl = new Flight(id, start, finish, airplane,
                 departureTime, arrivalTime);
         RequestAddFlight addF = new RequestAddFlight(r, fl);
-        
-        IResponse res = dm.exec(addF);    
-        
+
+        IResponse res = dm.exec(addF);
+
         if(res.state() == EResponseState.OK)
         {
             return fl;
@@ -58,16 +58,16 @@ class ManagementFlights implements IManagementFlights{
     }
 
     @Override
-    public boolean cancelFlight(IFlight flights) 
+    public boolean cancelFlight(IFlight flights)
     {
         RequestCancelFlight cancelR = new RequestCancelFlight(r, flights);
         IResponse res = dm.exec(cancelR);
-        
+
         if(res.state() == EResponseState.OK)
         {
             return true;
         }
         return false;
     }
-    
+
 }

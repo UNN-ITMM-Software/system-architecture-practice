@@ -38,19 +38,19 @@ import java.util.logging.Logger;
  * @author Evgeniy
  */
 public class GetAllFlights implements IGetAllFlights{
-    
+
     @Override
     public IResponse get(RequestAllFlights r)
     {
         Map<UUID, IFlight> flights = new HashMap<>();
         Connection c = DatabaseConnection.getConnection();
         IAirportAccess aa= BAirportAccess.build();
-        
+
         Statement stmt = null;
         try {
             stmt = c.createStatement();
-        
-            String sql = "SELECT * FROM FLIGHTS"; 
+
+            String sql = "SELECT * FROM FLIGHTS";
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next())
             {
@@ -61,7 +61,7 @@ public class GetAllFlights implements IGetAllFlights{
                         UUID.fromString(rs.getString("A_TO")));
                 UUID id_airplane = UUID.fromString(rs.getString("AIRPLANE"));
                 IDataManagement dm = BDataManagement.build();
-                ResponseSetAirport res = 
+                ResponseSetAirport res =
                         (ResponseSetAirport)dm.exec(
                                 new RequestAllAirplanes(r.getRole()));
                 Iterator<IAirplane> itr = res.iterator();
@@ -73,12 +73,12 @@ public class GetAllFlights implements IGetAllFlights{
                     }
                 }
                 IFlight fl = BFlights.build(id, to, from, airplane,
-                        new Date(rs.getLong("TIME_START")), 
+                        new Date(rs.getLong("TIME_START")),
                         new Date(rs.getLong("TIME_FINISH")));
                 flights.put(id, fl);
             }
             stmt.close();
-        
+
         } catch (SQLException ex) {
             Logger.getLogger(AddFlightsToStorage.class.getName()).log(Level.SEVERE, null, ex);
         }

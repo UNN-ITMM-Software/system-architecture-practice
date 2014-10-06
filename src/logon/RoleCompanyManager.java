@@ -17,7 +17,7 @@ class RoleCompanyManager extends RoleUser{
     public RoleCompanyManager(String name, String login, String pass) {
         super(name, login, pass);
     }
-    
+
     @Override
     public UUID getStatusID() {
         return RoleStatus.manager;

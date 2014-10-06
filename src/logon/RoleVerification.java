@@ -12,19 +12,19 @@ package logon;
  */
 public class RoleVerification {
     public static boolean isManager(IRole r){
-        if(RoleStatus.manager.equals(r.getStatusID())) 
+        if(RoleStatus.manager.equals(r.getStatusID()))
         {
             return true;
         }
         return false;
     }
-    
+
     public static boolean isUser(IRole r){
-        if(RoleStatus.manager.equals(r.getStatusID())) 
+        if(RoleStatus.manager.equals(r.getStatusID()))
         {
             return true;
         }
-        if(RoleStatus.user.equals(r.getStatusID())) 
+        if(RoleStatus.user.equals(r.getStatusID()))
         {
             return true;
         }

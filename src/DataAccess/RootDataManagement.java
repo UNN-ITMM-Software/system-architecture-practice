@@ -20,7 +20,7 @@ class RootDataManagement implements IRootDataManagement{
 
     ArrayList<IHandler> handlers = new ArrayList<>();
     ArrayList<IObserver> views = new ArrayList<>();
-    
+
     @Override
     public IResponse exec(IRequest r) {
         if(r.getClass().equals(RequestRefresh.class))
@@ -30,7 +30,7 @@ class RootDataManagement implements IRootDataManagement{
         }
         IResponse response = null;
         Iterator<IHandler> itrH = handlers.iterator();
-        boolean isValid = true; 
+        boolean isValid = true;
         while(itrH.hasNext()){
             IHandler handler = itrH.next();
             if(handler.can(r))
@@ -44,10 +44,10 @@ class RootDataManagement implements IRootDataManagement{
             refresh();
         }
         if(response != null){
-            
+
             return response;
         }
-        
+
         return new ResponseSimple(EResponseState.UNSUPPORTED);
     }
 
@@ -56,7 +56,7 @@ class RootDataManagement implements IRootDataManagement{
         views.add(v);
         v.refresh(this);
     }
-    
+
     void refresh(){
         Iterator<IObserver> itr = views.iterator();
         while(itr.hasNext())
@@ -69,5 +69,5 @@ class RootDataManagement implements IRootDataManagement{
     public void addHandler(IHandler h) {
         handlers.add(h);
     }
-    
+
 }

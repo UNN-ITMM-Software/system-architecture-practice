@@ -24,8 +24,8 @@ public class AirplaneTableModel extends AbstractTableModel{
 
     IRole manegerRole = BAuthentication.getRole("manager", "123");
     IDataManagement dt = BDataManagement.build();
-    
-    
+
+
     @Override
     public int getRowCount() {
         IAirplaneManagement am = BAirplaneManagement.build(manegerRole);
@@ -50,5 +50,5 @@ public class AirplaneTableModel extends AbstractTableModel{
         }
         return itr.next();
     }
-    
+
 }

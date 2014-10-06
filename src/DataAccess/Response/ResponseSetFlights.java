@@ -20,15 +20,15 @@ public class ResponseSetFlights  extends ResponseSimple
     implements IResponse {
 
     Collection<IFlight> flights = null;
-    
+
     public ResponseSetFlights(EResponseState st, Collection<IFlight> flights) {
         super(st);
         this.flights = flights;
     }
-    
+
     public Iterator<IFlight> iterator()
     {
         return flights.iterator();
     }
-    
+
 }

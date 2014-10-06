@@ -13,7 +13,7 @@ package logon;
 public class BAuthentication {
     final public static IRole getRole(String login, String pass)
     {
-        IRole r; 
+        IRole r;
         if(login.equals("manager") && pass.equals("123"))
         {
             return new RoleCompanyManager("Root", login, pass);
