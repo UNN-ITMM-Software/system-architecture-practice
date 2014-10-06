@@ -22,8 +22,8 @@ import logon.IRole;
  */
 public class ViewAllFlights extends JPanel implements IView, IObserver{
 
-    IRole r = BAuthentication.getRole(); 
-    
+    IRole r = BAuthentication.getRole();
+
     IFlightsAtCompany fatc;
     /**
      * Creates new form ViewFlights
@@ -59,21 +59,21 @@ public class ViewAllFlights extends JPanel implements IView, IObserver{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void refresh(IDataManagement dm) 
+    public void refresh(IDataManagement dm)
     {
         Iterator<IFlight> itr;
         itr = fatc.all();
-        
+
         int i = 1;
-        
+
         StringBuilder sb=new StringBuilder();
         sb.append("Рейсы компании: \n");
         while(itr.hasNext())
         {
             IFlight fl = itr.next();
             sb.append(i + ". (" + fl.flightsID() + ")"
-                    + " из " + fl.startAirport().toString() 
-                    + " в "  + fl.finishAirport().toString() 
+                    + " из " + fl.startAirport().toString()
+                    + " в "  + fl.finishAirport().toString()
                     + "("+fl.arrivalTime().toString()+":"
                     + fl.departureTime() + ") \n"
             );

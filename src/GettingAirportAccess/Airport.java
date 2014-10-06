@@ -17,11 +17,11 @@ class Airport implements IAirport{
 
     UUID id = UUID.randomUUID();
     String name="";
-    
+
     public Airport(String name){
         this.name = name;
     }
-    
+
     @Override
     public String getName() {
         return name;

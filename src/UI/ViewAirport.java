@@ -27,7 +27,7 @@ public class ViewAirport extends JPanel implements IView, IObserver{
     IAirport airport = null;
     IDataManagement dm_local;
     IRole r = BAuthentication.getRole();
-    
+
     /**
      * Creates new form ViewAirport
      */
@@ -144,9 +144,9 @@ public class ViewAirport extends JPanel implements IView, IObserver{
         }
         dm_local.exec(new RequestRefresh(r));
     }
-    
+
     @Override
     public void init(IRole r) {
-        
+
     }
 }

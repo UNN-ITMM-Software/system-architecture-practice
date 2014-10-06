@@ -23,7 +23,7 @@ public class GetAllAirplanes implements IGetAllAirplanes{
     @Override
     public IResponse get()
     {
-        Map<UUID, IAirplane> airplanes = 
+        Map<UUID, IAirplane> airplanes =
                 BInfrastructure.buildGetAirplaneStorage().getAirplaneStorage();
         Collection<IAirplane> collection = airplanes.values();
         return new ResponseSetAirport(EResponseState.OK, collection);

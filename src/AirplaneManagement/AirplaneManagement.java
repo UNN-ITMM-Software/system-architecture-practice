@@ -28,13 +28,13 @@ class AirplaneManagement implements IAirplaneManagement{
 
     IRole r=null;
     IDataManagement dm;
-    
+
     AirplaneManagement(IRole r)
     {
         dm = BDataManagement.build();
         this.r = r;
     }
-    
+
     protected IRole getRole(){
         if(r == null)
         {
@@ -42,16 +42,16 @@ class AirplaneManagement implements IAirplaneManagement{
         }
         return r;
     }
-    
+
     @Override
     public IAirplane buy() {
         IRole role = getRole();
         IAirplane airplane = BAirplane.build();
-        
+
         RequestAddAirplane rAddAirplane;
         rAddAirplane= new RequestAddAirplane(role, airplane);
         IResponse res = dm.exec(rAddAirplane);
-        
+
         if(res.state() == EResponseState.OK)
         {
             return airplane;
@@ -76,7 +76,7 @@ class AirplaneManagement implements IAirplaneManagement{
                     return airplane;
                 }
             }
-            
+
         }
         return null;
     }
@@ -109,5 +109,5 @@ class AirplaneManagement implements IAirplaneManagement{
         }
         return i;
     }
-    
+
 }

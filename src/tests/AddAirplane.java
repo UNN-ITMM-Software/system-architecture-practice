@@ -26,19 +26,19 @@ public class AddAirplane {
         IRole manegerRole = BAuthentication.getRole("manager", "123");
         IDataManagement dt = BDataManagement.build();
         IAirplane airplane = BAirplane.build();
-        
+
         ViewAirplaneText view = new ViewAirplaneText();
         view.init(userRole);
-        
+
         dt.subscription(view);
-        
+
         RequestAddAirplane rAddAirplane;
         rAddAirplane= new RequestAddAirplane(userRole, airplane);
         dt.exec(rAddAirplane);
-        
+
         rAddAirplane = new RequestAddAirplane(manegerRole, airplane);
         dt.exec(rAddAirplane);
-        
+
         rAddAirplane = new RequestAddAirplane(manegerRole, airplane);
         dt.exec(rAddAirplane);
     }

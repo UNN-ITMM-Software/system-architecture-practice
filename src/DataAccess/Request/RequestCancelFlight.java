@@ -16,13 +16,13 @@ import logon.IRole;
  */
 public class RequestCancelFlight  extends RequestSimple implements IRequest{
     IFlight flight;
-    
+
     public RequestCancelFlight(IRole r, IFlight flights)
     {
         super(r);
         this.flight = flights;
     }
-    
+
     public IFlight get()
     {
         return flight;

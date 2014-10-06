@@ -17,7 +17,7 @@ import logon.IRole;
  */
 class AirportAccess implements IAirportAccess{
 
-    
+
     @Override
     public IAirport getAccess(IRole role, UUID airportID) {
         return ModelAllAirports.allAirport.get(airportID);
@@ -32,5 +32,5 @@ class AirportAccess implements IAirportAccess{
     public Iterator<IAirport> all(IRole role) {
         return ModelAllAirports.allAirport.values().iterator();
     }
-    
+
 }

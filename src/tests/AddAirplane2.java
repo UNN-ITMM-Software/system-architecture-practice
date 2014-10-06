@@ -23,15 +23,15 @@ public class AddAirplane2 {
     public static void main(String[] args) {
         IRole userRole = BAuthentication.getRole("user", "123");
         IDataManagement dt = BDataManagement.build();
-        
+
         ViewAirplaneText view = new ViewAirplaneText();
         view.init(userRole);
-        
+
         dt.subscription(view);
-     
+
         IAirplaneManagement am = BAirplaneManagement.build(null);
         am.buy();
-        
+
         am.buy();
     }
 }

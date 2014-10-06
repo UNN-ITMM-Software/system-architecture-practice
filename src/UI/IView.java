@@ -13,6 +13,6 @@ import logon.IRole;
  * @author Evgeniy
  */
 public interface IView {
-    
+
     void init(IRole r);
 }

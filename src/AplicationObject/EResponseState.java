@@ -12,6 +12,6 @@ package AplicationObject;
  */
 public enum EResponseState {
     OK,
-    FALSE, 
+    FALSE,
     UNSUPPORTED
 }

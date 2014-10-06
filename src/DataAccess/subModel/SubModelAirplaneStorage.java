@@ -20,7 +20,7 @@ import Infrastructure.BInfrastructure;
  * @author Evgeniy
  */
 class SubModelAirplaneStorage implements IHandler{
-    
+
     @Override
     public IResponse exec(IRequest r) {
         if(r.getClass().equals(RequestAddAirplane.class))
@@ -42,5 +42,5 @@ class SubModelAirplaneStorage implements IHandler{
         return false;
     }
 
-    
+
 }

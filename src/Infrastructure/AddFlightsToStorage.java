@@ -25,7 +25,7 @@ import logon.RoleVerification;
  * @author Evgeniy
  */
 public class AddFlightsToStorage implements IAddFlights{
-    
+
     @Override
     public IResponse add(RequestAddFlight r)
     {
@@ -33,20 +33,20 @@ public class AddFlightsToStorage implements IAddFlights{
         {
             JOptionPane.showMessageDialog( null,
                     "Редактировать информацию о полетах "
-                    + "могут только менежеры", 
-                    "Нет прав доступа", 
+                    + "могут только менежеры",
+                    "Нет прав доступа",
                     JOptionPane.ERROR_MESSAGE);
             return new ResponseSimple(EResponseState.FALSE, false);
         }
-        
+
         IFlight flights = r.get();
-        
+
         Connection c = DatabaseConnection.getConnection();
-        
+
         Statement stmt = null;
         try {
             stmt = c.createStatement();
-        
+
             String sql = "INSERT INTO FLIGHTS (ID_FLIGHTS, AIRPLANE, "
                     + " A_FROM, A_TO, TIME_START, TIME_FINISH)"
                     + " VALUES ("
@@ -56,14 +56,14 @@ public class AddFlightsToStorage implements IAddFlights{
                     + "'"+flights.finishAirport().getID().toString()+"',"
                     + "'"+flights.departureTime().getTime()+"',"
                     + "'"+flights.arrivalTime().getTime()+"'"
-                    + ")"; 
+                    + ")";
             stmt.executeUpdate(sql);
             stmt.close();
             return new ResponseSimple(EResponseState.OK, false);
         } catch (SQLException ex) {
             Logger.getLogger(AddFlightsToStorage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return new ResponseSimple(EResponseState.FALSE, false);
     }
 }

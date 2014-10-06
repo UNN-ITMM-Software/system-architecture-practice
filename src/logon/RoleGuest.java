@@ -28,5 +28,5 @@ public class RoleGuest  implements IRole{
     public String getName() {
         return "nan";
     }
-    
+
 }

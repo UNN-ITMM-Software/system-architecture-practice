@@ -22,26 +22,26 @@ import logon.IRole;
  */
 class FlightsAtCompany implements IFlightsAtCompany{
 
-    IRole r; 
+    IRole r;
     IDataManagement dm;
-    
+
     public FlightsAtCompany(IRole r)
     {
         this.r = r;
         dm = BDataManagement.build();
     }
-    
+
     @Override
     public Iterator<IFlight> all() {
         Iterator<IFlight> itr;
-        
+
         ResponseSetFlights res= (ResponseSetFlights)
                 dm.exec(new RequestAllFlights(r));
-        
+
         itr = res.iterator();
         return itr;
     }
-    
+
     @Override
     public Iterator<IFlight> since(Date from)
     {
@@ -69,5 +69,5 @@ class FlightsAtCompany implements IFlightsAtCompany{
         }
         return false;
     }
-    
+
 }

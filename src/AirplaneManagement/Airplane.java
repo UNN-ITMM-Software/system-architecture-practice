@@ -15,7 +15,7 @@ import java.util.UUID;
  */
 class Airplane implements IAirplane{
     UUID id = UUID.randomUUID();
-    
+
     @Override
     public UUID getID() {
         return id;
@@ -26,5 +26,5 @@ class Airplane implements IAirplane{
         return id.toString();
     }
 
-    
+
 }

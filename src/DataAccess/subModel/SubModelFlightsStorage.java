@@ -21,14 +21,14 @@ import Infrastructure.BInfrastructure;
  * @author Evgeniy
  */
 class SubModelFlightsStorage  implements IHandler{
-    
+
     @Override
     public IResponse exec(IRequest r) {
         if(r.getClass().equals(RequestAddFlight.class))
         {
             RequestAddFlight add = (RequestAddFlight)r;
          return BInfrastructure.buildAddFlights().add(add);
-        }   
+        }
         if(r.getClass().equals(RequestAllFlights.class))
         {
             RequestAllFlights get = (RequestAllFlights)r;

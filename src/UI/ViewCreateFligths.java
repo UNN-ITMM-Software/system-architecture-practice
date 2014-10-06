@@ -156,12 +156,12 @@ public class ViewCreateFligths extends JPanel implements IView, IObserver{
 
     private void ButtonScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonScheduleActionPerformed
         IManagementFlights mfl = BManagementFlights.build(manegerRole);
-        
+
         IAirport airport1 = (IAirport)ComboBoxFrom.getSelectedItem();
         IAirport airport2 = (IAirport)ComboBoxTo.getSelectedItem();
         IAirplane ap = (IAirplane)ComboBoxAirplane.getSelectedItem();
-        
-        IFlight fl1 = mfl.addFlight(airport1, airport2, ap, 
+
+        IFlight fl1 = mfl.addFlight(airport1, airport2, ap,
                 departureTime.getDate(), arrivalTime.getDate());
     }//GEN-LAST:event_ButtonScheduleActionPerformed
 
@@ -191,9 +191,9 @@ public class ViewCreateFligths extends JPanel implements IView, IObserver{
         ComboBoxFrom.removeAllItems();
         ComboBoxTo.removeAllItems();
         ComboBoxAirplane.removeAllItems();
-        
+
         Iterator<IAirport> itr = aa.all(r);
-        
+
         IAirport airport;
         while(itr.hasNext()){
             airport = itr.next();
@@ -206,7 +206,7 @@ public class ViewCreateFligths extends JPanel implements IView, IObserver{
             airplane = itrAp.next();
             ComboBoxAirplane.addItem(airplane);
         }
-        
+
         ComboBoxFrom.revalidate();
         ComboBoxTo.revalidate();
         ComboBoxAirplane.revalidate();

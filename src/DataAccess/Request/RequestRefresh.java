@@ -18,5 +18,5 @@ public class RequestRefresh extends RequestSimple implements IRequest{
     public RequestRefresh(IRole r) {
         super(r);
     }
-    
+
 }

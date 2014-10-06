@@ -16,12 +16,12 @@ import logon.IRole;
  */
 public class RequestSimple implements IRequest{
     IRole r;
-    
+
     public RequestSimple(IRole r)
     {
         this.r = r;
     }
-    
+
     @Override
     public IRole getRole() {
         return r;

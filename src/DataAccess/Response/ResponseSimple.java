@@ -17,18 +17,18 @@ public class ResponseSimple implements IResponse{
 
     EResponseState st;
     boolean isValid = true;
-    
+
     public ResponseSimple(EResponseState st)
     {
         this.st = st;
     }
-    
+
     public ResponseSimple(EResponseState st, boolean isValid)
     {
         this.st = st;
         this.isValid = isValid;
     }
-    
+
     @Override
     public EResponseState state() {
         return st;
@@ -38,6 +38,6 @@ public class ResponseSimple implements IResponse{
     public boolean isValid() {
         return isValid;
     }
-    
-    
+
+
 }

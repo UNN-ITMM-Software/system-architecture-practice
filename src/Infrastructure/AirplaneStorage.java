@@ -18,7 +18,7 @@ import java.util.UUID;
  */
 class AirplaneStorage implements IAirplaneStorage{
      Map<UUID, IAirplane> airplanes = new HashMap<>();
-     
+
      @Override
      public Map<UUID, IAirplane> getAirplaneStorage(){
          return airplanes;
