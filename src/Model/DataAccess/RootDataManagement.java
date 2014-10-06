@@ -8,6 +8,8 @@ package Model.DataAccess;
 
 import Model.AplicationObject.EResponseState;
 import Model.Request.RequestRefresh;
+import Model.RequestSecurity.BCanExecute;
+import Model.RequestSecurity.ICanExecute;
 import Model.Response.ResponseSimple;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,6 +21,12 @@ class RootDataManagement implements IRootDataManagement{
     
     @Override
     public IResponse exec(IRequest r) {
+        //Проверка безопастности
+        ICanExecute canExecute = BCanExecute.build();
+        boolean f = canExecute.can(r);
+        if(!f) return new ResponseSimple(EResponseState.FALSE);
+        
+        //Выполнение запросов
         if(r.getClass().equals(RequestRefresh.class))
         {
             refresh();

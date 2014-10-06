@@ -15,7 +15,6 @@ import Model.Request.RequestAddAirplane;
 import java.util.Map;
 import java.util.UUID;
 import javax.swing.JOptionPane;
-import Model.Logon.RoleVerification;
 
 public class AddAirplainToStorage implements IAddAirplane{
     
@@ -24,15 +23,6 @@ public class AddAirplainToStorage implements IAddAirplane{
     {
         Map<UUID, IAirplane> airplanes = 
                 BInfrastructure.buildGetAirplaneStorage().getAirplaneStorage();
-        if(!RoleVerification.isManager(r.getRole()))
-        {
-            JOptionPane.showMessageDialog( null,
-                    "Редактировать информацию о самолетах "
-                    + "могут только менежеры", 
-                    "Нет прав доступа", 
-                    JOptionPane.ERROR_MESSAGE);
-            return new ResponseSimple(EResponseState.FALSE, false);
-        }
         
         IAirplane airplane = r.get();
         

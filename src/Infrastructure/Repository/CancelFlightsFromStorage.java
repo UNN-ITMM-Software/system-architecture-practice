@@ -17,23 +17,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-import Model.Logon.RoleVerification;
 
 public class CancelFlightsFromStorage implements ICancelFlights{
     @Override
     public IResponse cancel(RequestCancelFlight r)
     {
-        if(!RoleVerification.isManager(r.getRole()))
-        {
-            JOptionPane.showMessageDialog( null,
-                    "Редактировать информацию о полетах "
-                    + "могут только менежеры", 
-                    "Нет прав доступа", 
-                    JOptionPane.ERROR_MESSAGE);
-            return new ResponseSimple(EResponseState.FALSE, false);
-        }
-        
         IFlight flights = r.get();
         
         Connection c = DatabaseConnection.getConnection();

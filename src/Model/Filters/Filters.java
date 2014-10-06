@@ -17,7 +17,7 @@ import java.util.UUID;
  *
  * @author Evgeniy
  */
-public class Filters implements IFilters{
+class Filters implements IFilters{
 
     @Override
     public Iterator<IFlight> flightsSinceDate(Iterator<IFlight> flights, Date from) {
