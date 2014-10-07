@@ -8,7 +8,6 @@ package Model.Request;
 
 import Model.AplicationObject.IAirplane;
 import Model.DataAccess.IRequest;
-import Model.DataAccess.RequestAirplanesOperation;
 import Model.DataAccess.IResponse;
 import Model.Logon.IRole;
 import Model.RepositoryInterface.IBInfrastructure;
