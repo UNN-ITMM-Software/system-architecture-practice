@@ -6,16 +6,20 @@
 
 package Model.DataAccess;
 
+import Infrastructure.Repository.BInfrastructure;
+import Model.RepositoryInterface.IBInfrastructure;
 import Model.RequestHandlers.BBuildTestHandler;
 
 public class BDataManagement {
     static IRootDataManagement rdm = null;
+    static IBInfrastructure infr = null;
     static public IDataManagement build(){
         if(rdm == null)
         {
             rdm = new RootDataManagement();
-            rdm.addHandler(BBuildTestHandler.buildAiplanesHandler());
-            rdm.addHandler(BBuildTestHandler.buildFlightsHandler());
+            infr = new BInfrastructure();
+            rdm.addHandler(BBuildTestHandler.buildAiplanesHandler(infr));
+            rdm.addHandler(BBuildTestHandler.buildFlightsHandler(infr));
         }
         return rdm;
     }

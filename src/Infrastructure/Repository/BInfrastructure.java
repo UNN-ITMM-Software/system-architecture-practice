@@ -9,27 +9,30 @@ package Infrastructure.Repository;
 import Model.RepositoryInterface.IAirplaneStorage;
 import Model.RepositoryInterface.IAddAirplane;
 import Model.RepositoryInterface.IAddFlights;
+import Model.RepositoryInterface.IBInfrastructure;
 import Model.RepositoryInterface.ICancelFlights;
 import Model.RepositoryInterface.IGetAllAirplanes;
 import Model.RepositoryInterface.IGetAllFlights;
 
-public class BInfrastructure {
-    static IAddAirplane oAddAirplane = null;
-    static IAddFlights oAddFlights = null;
-    static ICancelFlights oCancelFlights = null;
-    static IGetAllAirplanes oGetAllAirplanes = null;
-    static IGetAllFlights oGetAllFlights = null;
-    static IAirplaneStorage oAirplaneStorage = null;
+public class BInfrastructure implements IBInfrastructure {
+    IAddAirplane oAddAirplane = null;
+    IAddFlights oAddFlights = null;
+    ICancelFlights oCancelFlights = null;
+    IGetAllAirplanes oGetAllAirplanes = null;
+    IGetAllFlights oGetAllFlights = null;
+    IAirplaneStorage oAirplaneStorage = null;
             
-    public static IAddAirplane buildAddAirplane(){
+    @Override
+    public IAddAirplane buildAddAirplane(){
         if(oAddAirplane == null)
         {
-            oAddAirplane = new AddAirplainToStorage();
+            oAddAirplane = new AddAirplainToStorage(this);
         } 
         return oAddAirplane;
     }
     
-    public static IAddFlights buildAddFlights(){
+    @Override
+    public IAddFlights buildAddFlights(){
         if(oAddFlights == null)
         {
             oAddFlights = new AddFlightsToStorage();
@@ -37,7 +40,8 @@ public class BInfrastructure {
         return oAddFlights;
     }
     
-    public static ICancelFlights buildCancelFlights(){
+    @Override
+    public ICancelFlights buildCancelFlights(){
         if(oCancelFlights == null)
         {
             oCancelFlights = new CancelFlightsFromStorage();
@@ -45,15 +49,17 @@ public class BInfrastructure {
         return oCancelFlights;
     }
     
-    public static IGetAllAirplanes buildGetAllAirplanes(){
+    @Override
+    public IGetAllAirplanes buildGetAllAirplanes(){
         if(oGetAllAirplanes == null)
         {
-            oGetAllAirplanes = new GetAllAirplanes();
+            oGetAllAirplanes = new GetAllAirplanes(this);
         } 
         return oGetAllAirplanes;
     }
     
-    public static IGetAllFlights buildGetAllFlights(){
+    @Override
+    public IGetAllFlights buildGetAllFlights(){
         if(oGetAllFlights == null)
         {
             oGetAllFlights = new GetAllFlights();
@@ -61,7 +67,8 @@ public class BInfrastructure {
         return oGetAllFlights;
     }
     
-    public static IAirplaneStorage buildGetAirplaneStorage(){
+    @Override
+    public IAirplaneStorage buildGetAirplaneStorage(){
         if(oAirplaneStorage == null)
         {
             oAirplaneStorage = new AirplaneStorage();

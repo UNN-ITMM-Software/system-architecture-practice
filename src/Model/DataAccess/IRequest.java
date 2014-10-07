@@ -7,7 +7,10 @@
 package Model.DataAccess;
 
 import Model.Logon.IRole;
+import Model.RepositoryInterface.IBInfrastructure;
 
 public interface IRequest {
     IRole getRole();
+    IResponse exec(IBInfrastructure infrastructure);
+    boolean can();
 }

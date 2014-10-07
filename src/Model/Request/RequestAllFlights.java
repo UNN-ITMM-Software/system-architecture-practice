@@ -7,7 +7,9 @@
 package Model.Request;
 
 import Model.DataAccess.IRequest;
+import Model.DataAccess.IResponse;
 import Model.Logon.IRole;
+import Model.RepositoryInterface.IBInfrastructure;
 
 public class RequestAllFlights  extends RequestSimple implements IRequest{
 
@@ -15,4 +17,15 @@ public class RequestAllFlights  extends RequestSimple implements IRequest{
         super(r);
     }
 
+    @Override
+    public IResponse exec(IBInfrastructure infrastructure)
+    {
+        return infrastructure.buildGetAllFlights().get(this);
+    }
+    
+    @Override
+    public boolean can()
+    {
+        return true;
+    }
 }
