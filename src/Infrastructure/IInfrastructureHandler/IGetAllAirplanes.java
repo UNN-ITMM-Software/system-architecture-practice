@@ -4,10 +4,15 @@
  * and open the template in the editor.
  */
 
-package Model.RepositoryInterface;
+package Infrastructure.IInfrastructureHandler;
 
+import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
 
-public interface IGetAllAirplanes {
+/**
+ *
+ * @author Evgeniy
+ */
+public interface IGetAllAirplanes  extends IInfrastructureHandler{
     IResponse get();
 }

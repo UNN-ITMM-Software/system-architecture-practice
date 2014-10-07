@@ -6,12 +6,11 @@
 
 package Infrastructure.Repository;
 
-import Model.RepositoryInterface.IAirplaneStorage;
-import Model.RepositoryInterface.IAddAirplane;
-import Model.RepositoryInterface.IAddFlights;
-import Model.RepositoryInterface.ICancelFlights;
-import Model.RepositoryInterface.IGetAllAirplanes;
-import Model.RepositoryInterface.IGetAllFlights;
+import Infrastructure.IInfrastructureHandler.IAddAirplane;
+import Infrastructure.IInfrastructureHandler.IAddFlights;
+import Infrastructure.IInfrastructureHandler.ICancelFlights;
+import Infrastructure.IInfrastructureHandler.IGetAllAirplanes;
+import Infrastructure.IInfrastructureHandler.IGetAllFlights;
 
 public class BInfrastructure {
     static IAddAirplane oAddAirplane = null;

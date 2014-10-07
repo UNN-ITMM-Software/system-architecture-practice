@@ -4,11 +4,16 @@
  * and open the template in the editor.
  */
 
-package Model.RepositoryInterface;
+package Infrastructure.IInfrastructureHandler;
 
+import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAddFlight;
 
-public interface IAddFlights {
+/**
+ *
+ * @author Evgeniy
+ */
+public interface IAddFlights  extends IInfrastructureHandler{
     IResponse add(RequestAddFlight r);
 }
