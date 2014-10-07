@@ -6,8 +6,12 @@
 
 package Model.Request;
 
+import Model.AplicationObject.EResponseState;
 import Model.DataAccess.IRequest;
+import Model.DataAccess.IResponse;
 import Model.Logon.IRole;
+import Model.RepositoryInterface.IBInfrastructure;
+import Model.Response.ResponseSimple;
 
 public class RequestSimple implements IRequest{
     IRole r;
@@ -20,5 +24,16 @@ public class RequestSimple implements IRequest{
     @Override
     public IRole getRole() {
         return r;
+    }
+    
+    @Override
+    public IResponse exec(IBInfrastructure infrastructure)
+    {
+        return new ResponseSimple(EResponseState.UNSUPPORTED);
+    }
+
+    @Override
+    public boolean can() {
+        return false;
     }
 }

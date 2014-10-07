@@ -8,7 +8,9 @@ package Model.Request;
 
 import Model.AplicationObject.IFlight;
 import Model.DataAccess.IRequest;
+import Model.DataAccess.IResponse;
 import Model.Logon.IRole;
+import Model.RepositoryInterface.IBInfrastructure;
 
 public class RequestCancelFlight  extends RequestSimple implements IRequest{
     IFlight flight;
@@ -22,5 +24,17 @@ public class RequestCancelFlight  extends RequestSimple implements IRequest{
     public IFlight get()
     {
         return flight;
+    }
+    
+    @Override
+    public IResponse exec(IBInfrastructure infrastructure)
+    {
+        return infrastructure.buildCancelFlights().cancel(this);
+    }
+    
+    @Override
+    public boolean can()
+    {
+        return true;
     }
 }

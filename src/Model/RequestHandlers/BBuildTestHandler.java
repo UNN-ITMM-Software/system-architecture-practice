@@ -7,12 +7,13 @@
 package Model.RequestHandlers;
 
 import Model.DataAccess.IHandler;
+import Model.RepositoryInterface.IBInfrastructure;
 
 public class BBuildTestHandler {
-    static public IHandler buildAiplanesHandler(){
-        return new SubModelAirplaneStorage();
+    static public IHandler buildAiplanesHandler(IBInfrastructure infr){
+        return new SubModelAirplaneStorage(infr);
     }
-    static public IHandler buildFlightsHandler(){
-        return new SubModelFlightsStorage();
+    static public IHandler buildFlightsHandler(IBInfrastructure infr){
+        return new SubModelFlightsStorage(infr);
     }
 }

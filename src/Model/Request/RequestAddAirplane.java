@@ -8,7 +8,10 @@ package Model.Request;
 
 import Model.AplicationObject.IAirplane;
 import Model.DataAccess.IRequest;
+import Model.DataAccess.RequestAirplanesOperation;
+import Model.DataAccess.IResponse;
 import Model.Logon.IRole;
+import Model.RepositoryInterface.IBInfrastructure;
 
 public class RequestAddAirplane extends RequestSimple implements IRequest{
 
@@ -25,4 +28,15 @@ public class RequestAddAirplane extends RequestSimple implements IRequest{
         return airplane;
     }
     
+    @Override
+    public IResponse exec(IBInfrastructure infrastructure) 
+    {
+        return infrastructure.buildAddAirplane().add(this);
+    }
+    
+    @Override
+    public boolean can()
+    {
+        return true;
+    }
 }

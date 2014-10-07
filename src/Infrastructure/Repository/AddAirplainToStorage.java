@@ -11,18 +11,25 @@ import Model.AplicationObject.IAirplane;
 import Model.DataAccess.IResponse;
 import Model.Response.ResponseSimple;
 import Model.RepositoryInterface.IAddAirplane;
+import Model.RepositoryInterface.IBInfrastructure;
 import Model.Request.RequestAddAirplane;
 import java.util.Map;
 import java.util.UUID;
 import javax.swing.JOptionPane;
 
 public class AddAirplainToStorage implements IAddAirplane{
+    IBInfrastructure infrastructure;
+    
+    public AddAirplainToStorage(IBInfrastructure infrastructure)
+    {
+        this.infrastructure = infrastructure;
+    }
     
     @Override
     public IResponse add(RequestAddAirplane r)
     {
         Map<UUID, IAirplane> airplanes = 
-                BInfrastructure.buildGetAirplaneStorage().getAirplaneStorage();
+                infrastructure.buildGetAirplaneStorage().getAirplaneStorage();
         
         IAirplane airplane = r.get();
         
