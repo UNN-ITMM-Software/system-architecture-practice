@@ -10,10 +10,6 @@ import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestCancelFlight;
 
-/**
- *
- * @author Evgeniy
- */
 public interface ICancelFlights  extends IInfrastructureHandler{
     IResponse cancel(RequestCancelFlight r);
 }

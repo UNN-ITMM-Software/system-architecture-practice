@@ -10,10 +10,6 @@ import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAddFlight;
 
-/**
- *
- * @author Evgeniy
- */
 public interface IAddFlights  extends IInfrastructureHandler{
     IResponse add(RequestAddFlight r);
 }

@@ -10,10 +10,6 @@ import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAllFlights;
 
-/**
- *
- * @author Evgeniy
- */
 public interface IGetAllFlights  extends IInfrastructureHandler{
     IResponse get(RequestAllFlights r);
 }
