@@ -8,7 +8,7 @@ package Model.AplicationObject;
 
 import java.util.UUID;
 
-public interface IAirport {
+public interface IAirport_qqq {
     String getName();
     UUID getID();
 }
