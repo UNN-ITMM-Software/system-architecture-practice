@@ -9,40 +9,41 @@ package Model.RequestHandlers;
 import Model.AplicationObject.EResponseState;
 import Model.Response.ResponseSimple;
 import Infrastructure.Repository.BInfrastructure;
+import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IHandler;
 import Model.DataAccess.IRequest;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAddFlight;
 import Model.Request.RequestAllFlights;
 import Model.Request.RequestCancelFlight;
+import java.util.HashMap;
+import java.util.Map;
 
 class SubModelFlightsStorage  implements IHandler{
+
+    Map<Class, IInfrastructureHandler> canExec = new HashMap<>();
+    
+    public SubModelFlightsStorage()
+    {
+        canExec.put(RequestAddFlight.class, 
+                BInfrastructure.buildAddFlights());
+        canExec.put(RequestAllFlights.class, 
+                BInfrastructure.buildGetAllFlights());
+        canExec.put(RequestCancelFlight.class, 
+                BInfrastructure.buildCancelFlights());
+    }
     
     @Override
     public IResponse exec(IRequest r) {
-        if(r.getClass().equals(RequestAddFlight.class))
-        {
-            RequestAddFlight add = (RequestAddFlight)r;
-         return BInfrastructure.buildAddFlights().add(add);
-        }   
-        if(r.getClass().equals(RequestAllFlights.class))
-        {
-            RequestAllFlights get = (RequestAllFlights)r;
-            return BInfrastructure.buildGetAllFlights().get(get);
-        }
-        if(r.getClass().equals(RequestCancelFlight.class))
-        {
-            RequestCancelFlight cancel = (RequestCancelFlight)r;
-            return BInfrastructure.buildCancelFlights().cancel(cancel);
-        }
-        return new ResponseSimple(EResponseState.UNSUPPORTED);
+        IInfrastructureHandler h = canExec.get(r.getClass());
+        if(h == null)
+            return new ResponseSimple(EResponseState.UNSUPPORTED);
+        
+        return h.exec(r);
     }
 
     @Override
     public boolean can(IRequest r) {
-        if(r.getClass().equals(RequestAddFlight.class)) return true;
-        if(r.getClass().equals(RequestAllFlights.class)) return true;
-        if(r.getClass().equals(RequestCancelFlight.class)) return true;
-        return false;
+        return canExec.containsKey(r.getClass());
     }
 }

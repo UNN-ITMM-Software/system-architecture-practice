@@ -12,15 +12,17 @@ import Model.AplicationObject.IAirport;
 import Model.AplicationObject.IFlight;
 import Model.Response.ResponseSetAirport;
 import Model.Response.ResponseSetFlights;
-import Model.RepositoryInterface.IGetAllFlights;
 import Infrastructure.GettingAirportAccess.BAirportAccess;
 import Infrastructure.GettingAirportAccess.IAirportAccess;
+import Infrastructure.IInfrastructureHandler.IGetAllFlights;
 import Presentation.ManagementFlightsAtCompany.BFlights;
 import Model.DataAccess.BDataManagement;
 import Model.DataAccess.IDataManagement;
+import Model.DataAccess.IRequest;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAllAirplanes;
 import Model.Request.RequestAllFlights;
+import Model.Response.ResponseSimple;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -79,5 +81,16 @@ public class GetAllFlights implements IGetAllFlights{
             Logger.getLogger(AddFlightsToStorage.class.getName()).log(Level.SEVERE, null, ex);
         }
         return new ResponseSetFlights(EResponseState.OK, flights.values());
+    }
+    @Override
+    public IResponse exec(IRequest r) {
+        IResponse res;
+        try{
+            RequestAllFlights local_r = (RequestAllFlights)r;
+            res = get(local_r);
+        }catch (ClassCastException e){
+            res = new ResponseSimple(EResponseState.UNSUPPORTED);
+        }
+        return res;
     }
 }

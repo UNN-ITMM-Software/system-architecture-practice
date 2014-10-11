@@ -6,11 +6,12 @@
 
 package Infrastructure.Repository;
 
+import Infrastructure.IInfrastructureHandler.IAddAirplane;
 import Model.AplicationObject.EResponseState;
 import Model.AplicationObject.IAirplane;
 import Model.DataAccess.IResponse;
 import Model.Response.ResponseSimple;
-import Model.RepositoryInterface.IAddAirplane;
+import Model.DataAccess.IRequest;
 import Model.Request.RequestAddAirplane;
 import java.util.Map;
 import java.util.UUID;
@@ -38,5 +39,17 @@ public class AddAirplainToStorage implements IAddAirplane{
         airplanes.put(airplane.getID(), airplane);
         
         return new ResponseSimple(EResponseState.OK, false);
+    }
+
+    @Override
+    public IResponse exec(IRequest r) {
+        IResponse res;
+        try{
+            RequestAddAirplane local_r = (RequestAddAirplane)r;
+            res = add(local_r);
+        }catch (ClassCastException e){
+            res = new ResponseSimple(EResponseState.UNSUPPORTED);
+        }
+        return res;
     }
 }

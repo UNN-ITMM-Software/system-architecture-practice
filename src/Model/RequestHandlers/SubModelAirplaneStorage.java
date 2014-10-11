@@ -9,34 +9,38 @@ package Model.RequestHandlers;
 import Model.AplicationObject.EResponseState;
 import Model.Response.ResponseSimple;
 import Infrastructure.Repository.BInfrastructure;
+import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IHandler;
 import Model.DataAccess.IRequest;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAddAirplane;
 import Model.Request.RequestAllAirplanes;
+import java.util.HashMap;
+import java.util.Map;
 
 class SubModelAirplaneStorage implements IHandler{
     
+    Map<Class, IInfrastructureHandler> canExec = new HashMap<>();
+    
+    public SubModelAirplaneStorage()
+    {
+        canExec.put(RequestAddAirplane.class, 
+                BInfrastructure.buildAddAirplane());
+        canExec.put(RequestAllAirplanes.class, 
+                BInfrastructure.buildGetAllAirplanes());
+    }
+    
     @Override
     public IResponse exec(IRequest r) {
-        if(r.getClass().equals(RequestAddAirplane.class))
-        {
-            RequestAddAirplane add = (RequestAddAirplane)r;
-            return BInfrastructure.buildAddAirplane().add(add);
-        }
-        if(r.getClass().equals(RequestAllAirplanes.class))
-        {
-            return BInfrastructure.buildGetAllAirplanes().get();
-        }
-        return new ResponseSimple(EResponseState.UNSUPPORTED);
+        IInfrastructureHandler h = canExec.get(r.getClass());
+        if(h == null)
+            return new ResponseSimple(EResponseState.UNSUPPORTED);
+        
+        return h.exec(r);
     }
 
     @Override
     public boolean can(IRequest r) {
-        if(r.getClass().equals(RequestAddAirplane.class)) return true;
-        if(r.getClass().equals(RequestAllAirplanes.class)) return true;
-        return false;
+        return canExec.containsKey(r.getClass());
     }
-
-    
 }

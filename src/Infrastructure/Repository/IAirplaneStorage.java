@@ -4,12 +4,16 @@
  * and open the template in the editor.
  */
 
-package Model.RepositoryInterface;
+package Infrastructure.Repository;
 
 import Model.AplicationObject.IAirplane;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ *
+ * @author Evgeniy
+ */
 public interface IAirplaneStorage {
     Map<UUID, IAirplane> getAirplaneStorage();
 }

@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 
-package Model.RepositoryInterface;
+package Infrastructure.IInfrastructureHandler;
 
+import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
-import Model.Request.RequestAllFlights;
 
-public interface IGetAllFlights {
-    IResponse get(RequestAllFlights r);
+public interface IGetAllAirplanes  extends IInfrastructureHandler{
+    IResponse get();
 }

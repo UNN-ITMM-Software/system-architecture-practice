@@ -6,11 +6,13 @@
 
 package Infrastructure.Repository;
 
+import Infrastructure.IInfrastructureHandler.ICancelFlights;
 import Model.AplicationObject.EResponseState;
 import Model.AplicationObject.IFlight;
+import Model.DataAccess.IRequest;
 import Model.DataAccess.IResponse;
+import Model.Request.RequestAddFlight;
 import Model.Response.ResponseSimple;
-import Model.RepositoryInterface.ICancelFlights;
 import Model.Request.RequestCancelFlight;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -40,5 +42,17 @@ public class CancelFlightsFromStorage implements ICancelFlights{
         }
         
         return new ResponseSimple(EResponseState.FALSE, false);
+    }
+    
+    @Override
+    public IResponse exec(IRequest r) {
+        IResponse res;
+        try{
+            RequestCancelFlight local_r = (RequestCancelFlight)r;
+            res = cancel(local_r);
+        }catch (ClassCastException e){
+            res = new ResponseSimple(EResponseState.UNSUPPORTED);
+        }
+        return res;
     }
 }

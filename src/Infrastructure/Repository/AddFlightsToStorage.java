@@ -6,11 +6,13 @@
 
 package Infrastructure.Repository;
 
+import Infrastructure.IInfrastructureHandler.IAddFlights;
 import Model.AplicationObject.EResponseState;
 import Model.AplicationObject.IFlight;
+import Model.DataAccess.IRequest;
 import Model.DataAccess.IResponse;
+import Model.Request.RequestAddAirplane;
 import Model.Response.ResponseSimple;
-import Model.RepositoryInterface.IAddFlights;
 import Model.Request.RequestAddFlight;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -49,5 +51,17 @@ public class AddFlightsToStorage implements IAddFlights{
         }
         
         return new ResponseSimple(EResponseState.FALSE, false);
+    }
+    
+    @Override
+    public IResponse exec(IRequest r) {
+        IResponse res;
+        try{
+            RequestAddFlight local_r = (RequestAddFlight)r;
+            res = add(local_r);
+        }catch (ClassCastException e){
+            res = new ResponseSimple(EResponseState.UNSUPPORTED);
+        }
+        return res;
     }
 }

@@ -6,17 +6,16 @@
 
 package Infrastructure.Repository;
 
-import Model.RepositoryInterface.IAirplaneStorage;
 import Model.AplicationObject.IAirplane;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
 class AirplaneStorage implements IAirplaneStorage{
-     Map<UUID, IAirplane> airplanes = new HashMap<>();
-     
-     @Override
-     public Map<UUID, IAirplane> getAirplaneStorage(){
-         return airplanes;
-     }
+    Map<UUID, IAirplane> airplanes = new HashMap<>();
+
+    @Override
+    public Map<UUID, IAirplane> getAirplaneStorage(){
+        return airplanes;
+    }
 }
