@@ -6,10 +6,10 @@
 
 package Infrastructure.IInfrastructureHandler;
 
-import Model.DataAccess.IRrepository;
+import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAddAirplane;
 
-public interface IAddAirplane extends IRrepository{
+public interface IAddAirplane extends IInfrastructureHandler{
     IResponse add(RequestAddAirplane r);
 }

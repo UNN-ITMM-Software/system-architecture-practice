@@ -6,9 +6,9 @@
 
 package Infrastructure.IInfrastructureHandler;
 
-import Model.DataAccess.IRrepository;
+import Infrastructure.Repository.IInfrastructureHandler;
 import Model.DataAccess.IResponse;
 
-public interface IGetAllAirplanes  extends IRrepository{
+public interface IGetAllAirplanes  extends IInfrastructureHandler{
     IResponse get();
 }
