@@ -6,10 +6,10 @@
 
 package Infrastructure.IInfrastructureHandler;
 
-import Infrastructure.Repository.IInfrastructureHandler;
+import Model.DataAccess.IRepository;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestAllFlights;
 
-public interface IGetAllFlights  extends IInfrastructureHandler{
+public interface IGetAllFlights  extends IRepository{
     IResponse get(RequestAllFlights r);
 }
