@@ -9,7 +9,7 @@ package Model.RequestHandlers;
 import Model.AplicationObject.EResponseState;
 import Model.Response.ResponseSimple;
 import Infrastructure.Repository.BInfrastructure;
-import Infrastructure.Repository.IInfrastructureHandler;
+import Model.DataAccess.IRrepository;
 import Model.DataAccess.IHandler;
 import Model.DataAccess.IRequest;
 import Model.DataAccess.IResponse;
@@ -21,7 +21,7 @@ import java.util.Map;
 
 class SubModelFlightsStorage  implements IHandler{
 
-    Map<Class, IInfrastructureHandler> canExec = new HashMap<>();
+    Map<Class, IRrepository> canExec= new HashMap<>();
     
     public SubModelFlightsStorage()
     {
@@ -35,7 +35,7 @@ class SubModelFlightsStorage  implements IHandler{
     
     @Override
     public IResponse exec(IRequest r) {
-        IInfrastructureHandler h = canExec.get(r.getClass());
+        IRrepository h = canExec.get(r.getClass());
         if(h == null)
             return new ResponseSimple(EResponseState.UNSUPPORTED);
         

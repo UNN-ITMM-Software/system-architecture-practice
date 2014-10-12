@@ -6,10 +6,10 @@
 
 package Infrastructure.IInfrastructureHandler;
 
-import Infrastructure.Repository.IInfrastructureHandler;
+import Model.DataAccess.IRrepository;
 import Model.DataAccess.IResponse;
 import Model.Request.RequestCancelFlight;
 
-public interface ICancelFlights  extends IInfrastructureHandler{
+public interface ICancelFlights  extends IRrepository{
     IResponse cancel(RequestCancelFlight r);
 }

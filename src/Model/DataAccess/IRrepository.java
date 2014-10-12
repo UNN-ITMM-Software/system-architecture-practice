@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Infrastructure.Repository;
+package Model.DataAccess;
 
 import Model.DataAccess.IRequest;
 import Model.DataAccess.IResponse;
@@ -13,6 +13,6 @@ import Model.DataAccess.IResponse;
  *
  * @author Evgeniy
  */
-public interface IInfrastructureHandler {
+public interface IRrepository {
     IResponse exec(IRequest r);
 }
