@@ -6,9 +6,6 @@
 
 package Infrastructure.Repository;
 
-import Model.DataAccess.IRequest;
-import Model.DataAccess.IResponse;
-
 /**
  *
  * @author Evgeniy
