@@ -4,15 +4,12 @@
  * and open the template in the editor.
  */
 
-package Infrastructure.Repository;
-
-import Model.DataAccess.IRequest;
-import Model.DataAccess.IResponse;
+package Model.DataAccess;
 
 /**
  *
  * @author Evgeniy
  */
-public interface IInfrastructureHandler {
+public interface IRepository {
     IResponse exec(IRequest r);
 }
